@@ -32,8 +32,8 @@ for single_m, multi_metric in metrics.items():
 
 # No funciona bien
 data_serie_kernel = pd.DataFrame(kernels_time)
-data_frame_default = pd.DataFrame(kernels_time.get("default"))
-data_frame_TLB_noMisses = pd.DataFrame(kernels_time.get("TLB_noMisses"))
+# data_frame_default = pd.DataFrame(kernels_time.get("default"))
+# data_frame_TLB_noMisses = pd.DataFrame(kernels_time.get("TLB_noMisses"))
 print(data_serie_kernel)
 
-sns.barplot(data = data_serie_kernel, x='default', y='TLB_noMisses')
+# sns.barplot(data = data_serie_kernel, x='default', y='TLB_noMisses')
