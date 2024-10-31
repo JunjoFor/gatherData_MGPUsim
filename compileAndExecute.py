@@ -8,7 +8,7 @@ samples_paths = os.listdir(sample_path)
 
 
 for sample in samples_paths:
-    if sample != "runner":
+    if sample != "runner" and sample != ".gitignore":
         sbatch_file = open(sample_path + sample + "/run.sh", 'w')
         sbatch_file.write("#!/bin/bash\n#SBATCH -n 1\n#SBATCH -c 2\n#SBATCH --ntasks=4\n#SBATCH --job-name=" + sample +"\nexport SRUN_CPUS_PER_TASK=${SLURM_CPUS_PER_TASK}\n ./" + sample + mgpu_args)
         sbatch_file.close()
