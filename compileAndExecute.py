@@ -1,7 +1,7 @@
 import sys
 import os
 
-sample_path = "../mgpusim/samples/"
+sample_path = "/gpfs/projects/bsc18/bsc125019/mgpusim/samples/"
 mgpu_args = " -timing -report-all -unified-gpus=1,2,3,4 -use-unified-memory"
 samples_paths = os.listdir(sample_path)
 
