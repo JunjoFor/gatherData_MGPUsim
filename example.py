@@ -61,4 +61,5 @@ ax.set_xlabel('Samples')
 ax.set_ylabel('Kernel Time')
 ax.legend(title='Directories')
 
+plt.savefig("example.pdf")
 plt.show()
