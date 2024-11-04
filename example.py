@@ -27,7 +27,7 @@ for directory, samples in metrics.items():
         dict_metrics = metrics.get(directory)
         aux = dict_metrics.get(sample)
         for i, j in aux.iterrows():
-            if j[' what'] == ' kernel_time':
+            if j[' what'] == ' kernel_time' and j[' where'] == ' Driver':
                 kernels_time[directory][sample] = float(j[' value'])
 
 # No funciona bien
@@ -49,20 +49,17 @@ bar_width = (1 - cat_spacing) / len(key_list)
 
 index = np.arange(len(xticklabels))
 
-g = sns.catplot(
-    data=data_serie_kernel)
-g.savefig("Example.pdf")
 # Plot bars
-#for i, key in enumerate(key_list):
-#    value = data_serie_kernel[key]
-#    ax.bar(index + i * bar_width, value, width=bar_width, label=key)
+for i, key in enumerate(key_list):
+    value = data_serie_kernel[key]
+    ax.bar(index + i * bar_width, value, width=bar_width, label=key)
 
-#ax.set_ylim(0, 0.000000004500)
-#ax.set_xticks(index + bar_width / 2 * (len(key_list) - 1))
-#ax.set_xticklabels(xticklabels)
-#ax.set_xlabel('Samples')
-#ax.set_ylabel('Kernel Time')
-#ax.legend(title='Directories')
+ax.set_ylim(0, 0.000000004500)
+ax.set_xticks(index + bar_width / 2 * (len(key_list) - 1))
+ax.set_xticklabels(xticklabels)
+ax.set_xlabel('Samples')
+ax.set_ylabel('Kernel Time')
+ax.legend(title='Directories')
 
-#plt.savefig("example.pdf")
+plt.savefig("example.pdf")
 #plt.show()
