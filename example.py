@@ -7,7 +7,7 @@ import pandas as pd
 
 # Parsing folders
 
-samplesUsed = ["bfs", "fir"]
+samplesUsed = ["atax","simpleconvolution","nw","relu","bicg","spmv","bfs","fft","im2col","concurrentkernel","matrixtranspose","nbody","memcopy","stencil2d","conv2d","fir","kmeans","aes","bitonicsort","matrixmultiplication","floydwarshall","pagerank","fastwalshtransform","concurrentworkload"]
 secondDir = ["default", "TLB_noMisses"]
 metrics = {}
 kernels_time = {}
@@ -62,4 +62,4 @@ ax.set_ylabel('Kernel Time')
 ax.legend(title='Directories')
 
 plt.savefig("example.pdf")
-plt.show()
+#plt.show()
