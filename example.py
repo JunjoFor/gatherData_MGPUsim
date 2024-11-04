@@ -54,7 +54,7 @@ for i, key in enumerate(key_list):
     value = data_serie_kernel[key]
     ax.bar(index + i * bar_width, value, width=bar_width, label=key)
 
-ax.set_ylim(0, 0.000000004500)
+# ax.set_ylim(0, 0.000000004500)
 ax.set_xticks(index + bar_width / 2 * (len(key_list) - 1))
 ax.set_xticklabels(xticklabels)
 ax.set_xlabel('Samples')
