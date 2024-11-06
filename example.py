@@ -47,8 +47,14 @@ default_value = 0.0
 tlbNoMisses_value = 0.0
 for row in data_serie_kernel.itertuples(index=True):
     print(row[0])
-    data_ipc.loc[row[0], 'default'] = row.default / row.default
-    data_ipc.loc[row[0], 'TLB_noMisses'] = row.default / row.TLB_noMisses
+    if row.default <= 0:
+        data_ipc.loc[row[0], 'default'] = 0
+    else:
+        data_ipc.loc[row[0], 'default'] = row.default / row.default
+    if row.TLB_noMisses <= 0:
+        data_ipc.loc[row[0], 'TLB_noMisses'] = 0
+    else:
+        data_ipc.loc[row[0], 'TLB_noMisses'] = row.default / row.TLB_noMisses
     if row.Instructions <= 0:
         data_ipc.loc[row[0], "MPKI"] = 0.0
     else:
