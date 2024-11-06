@@ -25,13 +25,13 @@ for dir in secondDir:
     # kernels_time[dir]['Benchmark'] = samplesUsed
     for sample in samplesUsed:
         metrics[dir][sample] = pd.read_csv("../mgpusim/samples/" + sample + "/" + dir + "/metrics.csv")
+        kernels_time["Instructions"][sample] = 0.0
+        kernels_time["TLB_misses"][sample] = 0.0
 
 for directory, samples in metrics.items():
     for sample in samples:
         dict_metrics = metrics.get(directory)
         aux = dict_metrics.get(sample)
-        kernels_time["Instructions"][sample] = 0.0
-        kernels_time["TLB_misses"][sample] = 0.0
         for i, j in aux.iterrows():
             if j[' what'] == ' kernel_time' and j[' where'] == ' Driver':
                 kernels_time[directory][sample] = float(j[' value'])
