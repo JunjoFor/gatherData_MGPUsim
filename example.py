@@ -46,10 +46,13 @@ data_ipc = pd.DataFrame()
 default_value = 0.0
 tlbNoMisses_value = 0.0
 for row in data_serie_kernel.itertuples(index=True):
-    print(row.index)
+    print(row[0])
     data_ipc.loc[row[0], 'default'] = row.default / row.default
     data_ipc.loc[row[0], 'TLB_noMisses'] = row.default / row.TLB_noMisses
-    data_ipc.loc[row[0], "MPKI"] = row.TLB_misses / (row.Instructions/1000.0)
+    if row.Instructions <= 0:
+        data_ipc.loc[row[0], "MPKI"] = 0.0
+    else:
+        data_ipc.loc[row[0], "MPKI"] = row.TLB_misses / (row.Instructions/1000.0)
     
 sorted_df = data_ipc.sort_values(by="MPKI", ascending=False)
 
