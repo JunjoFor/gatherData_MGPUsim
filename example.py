@@ -39,7 +39,7 @@ for directory, samples in metrics.items():
                 kernels_time["Instructions"][sample] = kernels_time["Instructions"][sample] + float(j[' value'])
             component = j[' where'].split(".")
             if len(component) > 2:
-                if directory =="default" and ("L1VTLB" in component[2]) and j[' what'] == ' miss':
+                if directory =="default" and ("TLB" in component[2]) and j[' what'] == ' miss':
                     kernels_time["TLB_misses"][sample] = kernels_time["TLB_misses"][sample] + float(j[' value'])
             
 
