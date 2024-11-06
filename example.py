@@ -16,7 +16,8 @@ for dir in secondDir:
     for sample in samplesUsed:
         metrics[dir] = {}
         kernels_time[dir] = {}
-
+kernels_time["TLB_misses"] = {}
+kernels_time["Instructions"] = {}
 for dir in secondDir:
     # kernels_time[dir]['Benchmark'] = samplesUsed
     for sample in samplesUsed:
@@ -26,32 +27,53 @@ for directory, samples in metrics.items():
     for sample in samples:
         dict_metrics = metrics.get(directory)
         aux = dict_metrics.get(sample)
+        tlb_misses = 0.0
+        insts = 0.0
         for i, j in aux.iterrows():
             if j[' what'] == ' kernel_time' and j[' where'] == ' Driver':
                 kernels_time[directory][sample] = float(j[' value'])
+            if dir == "default" and j[' what'] == ' cu_inst_count':
+                insts = insts + float(j[' value'])
+            if dir =="default" and ('L1VTLB[0]' in  j[' where']) and j[' what'] == 'miss':
+                tlb_misses = tlb_misses + float(j[' value'])
+        kernels_time["TLB_misses"] = tlb_misses
+        kernels_time["Instructions"] = insts
 
 # No funciona bien
 data_serie_kernel = pd.DataFrame(kernels_time)
+
+data_ipc = pd.DataFrame()
+default_value = 0.0
+tlbNoMisses_value = 0.0
+for row in data_serie_kernel.itertuples():
+    data_ipc.iloc[row.index, row.default] = row.default / row.default
+    data_ipc.iloc[row.index, row.TLB_noMisses] = row.default / row.TLB_noMisses
+    data_ipc.iloc[row.index, "MPKI"] = row.TLB_misses / (row.Instructions/1000.0)
+    
+sorted_df = data_ipc.sort_values(by="MPKI", ascending=False)
+
 # data_frame_default = pd.DataFrame(kernels_time.get("default"))
 # data_frame_TLB_noMisses = pd.DataFrame(kernels_time.get("TLB_noMisses"))
 print(data_serie_kernel)
-
+print(sorted_df)
 # sns.barplot(data = data_serie_kernel, 
 #              # x='default', y='TLB_noMisses'
 #             )
+
+sorted_df = sorted_df.drop(columns="MPKI")
 fig, ax = plt.subplots(constrained_layout=True)
 
-key_list = data_serie_kernel.columns.to_list()
-xticklabels = data_serie_kernel.index.to_list()
+key_list = sorted_df.columns.to_list()
+xticklabels = sorted_df.index.to_list()
 
-cat_spacing = 0.1
+cat_spacing = 0.5
 bar_width = (1 - cat_spacing) / len(key_list)
 
 index = np.arange(len(xticklabels))
 
 # Plot bars
 for i, key in enumerate(key_list):
-    value = data_serie_kernel[key]
+    value = sorted_df[key]
     ax.bar(index + i * bar_width, value, width=bar_width, label=key)
 
 # ax.set_ylim(0, 0.000000004500)
