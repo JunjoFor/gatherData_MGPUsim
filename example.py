@@ -32,10 +32,11 @@ for directory, samples in metrics.items():
         for i, j in aux.iterrows():
             if j[' what'] == ' kernel_time' and j[' where'] == ' Driver':
                 kernels_time[directory][sample] = float(j[' value'])
-            print("El valor de directory es: ", directory)
             if directory == "default" and j[' what'] == ' cu_inst_count':
+                print("El valor de value:", float(j[' value']))
                 insts = insts + float(j[' value'])
             if directory =="default" and ("L1VTLB[0]" in  j[' where']) and j[' what'] == 'miss':
+                print("El valor de value: in misses", float(j[' value']))
                 tlb_misses = tlb_misses + float(j[' value'])
         kernels_time["TLB_misses"] = tlb_misses
         kernels_time["Instructions"] = insts
