@@ -45,10 +45,10 @@ data_serie_kernel = pd.DataFrame(kernels_time)
 data_ipc = pd.DataFrame()
 default_value = 0.0
 tlbNoMisses_value = 0.0
-for row in data_serie_kernel.itertuples():
+for row in data_serie_kernel.itertuples(index=True):
     print(row.index)
     data_ipc.loc[row.index, 'default'] = row.default / row.default
-    data_ipc.loc[row.index, 'TLB_noMisses'] = row.default / row.TLB_noMisses
+    data_ipc.loc[row.index., 'TLB_noMisses'] = row.default / row.TLB_noMisses
     data_ipc.loc[row.index, "MPKI"] = row.TLB_misses / (row.Instructions/1000.0)
     
 sorted_df = data_ipc.sort_values(by="MPKI", ascending=False)
