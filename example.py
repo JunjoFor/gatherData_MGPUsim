@@ -33,13 +33,12 @@ for directory, samples in metrics.items():
             if j[' what'] == ' kernel_time' and j[' where'] == ' Driver':
                 kernels_time[directory][sample] = float(j[' value'])
             if directory == "default" and j[' what'] == ' cu_inst_count':
-                print("El valor de value:", float(j[' value']))
                 insts = insts + float(j[' value'])
-            if directory =="default" and ("L1VTLB[0]" in  j[' where']) and j[' what'] == 'miss':
+            if directory =="default" and j[' where'].split(".")[2] == "L1VTLB[0]" and j[' what'] == 'miss':
                 print("El valor de value: in misses", float(j[' value']))
                 tlb_misses = tlb_misses + float(j[' value'])
-        kernels_time["TLB_misses"] = tlb_misses
-        kernels_time["Instructions"] = insts
+            kernels_time["TLB_misses"] = tlb_misses
+            kernels_time["Instructions"] = insts
 
 # No funciona bien
 data_serie_kernel = pd.DataFrame(kernels_time)
