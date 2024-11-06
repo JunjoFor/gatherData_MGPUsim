@@ -47,9 +47,9 @@ default_value = 0.0
 tlbNoMisses_value = 0.0
 for row in data_serie_kernel.itertuples(index=True):
     print(row.index)
-    data_ipc.loc[row.index.value, 'default'] = row.default / row.default
-    data_ipc.loc[row.index.value, 'TLB_noMisses'] = row.default / row.TLB_noMisses
-    data_ipc.loc[row.index.value, "MPKI"] = row.TLB_misses / (row.Instructions/1000.0)
+    data_ipc.loc[row[0], 'default'] = row.default / row.default
+    data_ipc.loc[row[0], 'TLB_noMisses'] = row.default / row.TLB_noMisses
+    data_ipc.loc[row[0], "MPKI"] = row.TLB_misses / (row.Instructions/1000.0)
     
 sorted_df = data_ipc.sort_values(by="MPKI", ascending=False)
 
