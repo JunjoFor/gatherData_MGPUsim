@@ -30,19 +30,18 @@ for directory, samples in metrics.items():
     for sample in samples:
         dict_metrics = metrics.get(directory)
         aux = dict_metrics.get(sample)
-        tlb_misses = 0.0
-        insts = 0.0
+        kernels_time["Instructions"][sample] = 0.0
+        kernels_time["TLB_misses"][sample] = 0.0
         for i, j in aux.iterrows():
             if j[' what'] == ' kernel_time' and j[' where'] == ' Driver':
                 kernels_time[directory][sample] = float(j[' value'])
             if directory == "default" and j[' what'] == ' cu_inst_count':
-                insts = insts + float(j[' value'])
+                kernels_time["Instructions"][sample] = kernels_time["Instructions"][sample] + float(j[' value'])
             component = j[' where'].split(".")
             if len(component) > 3:
                 if directory =="default" and component[3] == "L1VTLB[0]" and j[' what'] == 'miss':
-                    tlb_misses = tlb_misses + float(j[' value'])
-            kernels_time["Instructions"][sample] = insts
-            kernels_time["TLB_misses"][sample] = tlb_misses
+                    kernels_time["TLB_misses"][sample] = kernels_time["TLB_misses"][sample] + float(j[' value'])
+            
 
 # No funciona bien
 data_serie_kernel = pd.DataFrame(kernels_time)
