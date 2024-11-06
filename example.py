@@ -38,7 +38,7 @@ for directory, samples in metrics.items():
             if directory == "default" and j[' what'] == ' cu_inst_count':
                 insts = insts + float(j[' value'])
             component = j[' where'].split(".")
-            if len(component) > 2:
+            if len(component) > 3:
                 if directory =="default" and component[3] == "L1VTLB[0]" and j[' what'] == 'miss':
                     tlb_misses = tlb_misses + float(j[' value'])
             kernels_time["Instructions"][sample] = insts
