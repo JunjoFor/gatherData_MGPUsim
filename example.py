@@ -34,8 +34,10 @@ for directory, samples in metrics.items():
                 kernels_time[directory][sample] = float(j[' value'])
             if directory == "default" and j[' what'] == ' cu_inst_count':
                 insts = insts + float(j[' value'])
-            if directory =="default" and j[' where'].split(".")[2] == "L1VTLB[0]" and j[' what'] == 'miss':
-                print("El valor de value: in misses", float(j[' value']))
+            component = j[' where'].split(".")
+            if len(component) > 2:
+                if directory =="default" and component[2] == "L1VTLB[0]" and j[' what'] == 'miss':
+                    print("El valor de value: in misses", float(j[' value']))
                 tlb_misses = tlb_misses + float(j[' value'])
             kernels_time["TLB_misses"] = tlb_misses
             kernels_time["Instructions"] = insts
