@@ -4,6 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+# from scipy.stats import hmean
 
 # Parsing folders
 
@@ -50,18 +51,13 @@ data_ipc = pd.DataFrame()
 default_value = 0.0
 tlbNoMisses_value = 0.0
 for row in data_serie_kernel.itertuples(index=True):
-    if row.default <= 0:
-        data_ipc.loc[row[0], 'default'] = 0
-    else:
+    if row.default > 0 and row.TLB_noMisses > 0:
         data_ipc.loc[row[0], 'default'] = row.default / row.default
-    if row.TLB_noMisses <= 0:
-        data_ipc.loc[row[0], 'TLB_noMisses'] = 0
-    else:
         data_ipc.loc[row[0], 'TLB_noMisses'] = row.default / row.TLB_noMisses
-    if row.Instructions <= 0:
-        data_ipc.loc[row[0], "MPKI"] = 0.0
-    else:
-        data_ipc.loc[row[0], "MPKI"] = row.TLB_misses / (row.Instructions/1000.0)
+        if row.Instructions <= 0:
+            data_ipc.loc[row[0], "MPKI"] = 0.0
+        else:
+            data_ipc.loc[row[0], "MPKI"] = row.TLB_misses / (row.Instructions/1000.0)
     
 sorted_df = data_ipc.sort_values(by="MPKI", ascending=False)
 
@@ -92,9 +88,9 @@ for i, key in enumerate(key_list):
 # ax.set_ylim(0, 0.000000004500)
 ax.set_xticks(index + bar_width / 2 * (len(key_list) - 1))
 ax.set_xticklabels(xticklabels, rotation=90)
-#ax.set_xlabel('Samples')
+# ax.set_xlabel('Samples')
 ax.set_ylabel('SpeedUp')
 ax.legend(title='Directories')
 
 plt.savefig("SpeedUp_TLB_noMisses_sorted.pdf")
-#plt.show()
+# plt.show()
