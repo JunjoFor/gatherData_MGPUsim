@@ -79,7 +79,7 @@ fig, ax = plt.subplots(constrained_layout=True)
 key_list = sorted_df.columns.to_list()
 xticklabels = sorted_df.index.to_list()
 
-cat_spacing = 0.5
+cat_spacing = 0.2
 bar_width = (1 - cat_spacing) / len(key_list)
 
 index = np.arange(len(xticklabels))
@@ -90,7 +90,7 @@ for i, key in enumerate(key_list):
     ax.bar(index + i * bar_width, value, width=bar_width, label=key)
 
 # ax.set_ylim(0, 0.000000004500)
-ax.set_xticks(index + bar_width / 2 * (len(key_list) - 1))
+ax.set_xticks(index + bar_width + 5 / 2 * (len(key_list) - 1))
 ax.set_xticklabels(xticklabels)
 ax.set_xlabel('Samples')
 ax.set_ylabel('Kernel Time')
