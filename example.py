@@ -39,12 +39,10 @@ for directory, samples in metrics.items():
                 insts = insts + float(j[' value'])
             component = j[' where'].split(".")
             if len(component) > 2:
-                print("Este es el componente : ", component)
-                if directory =="default" and component[2] == "L1VTLB[0]" and j[' what'] == 'miss':
-                    print("El valor de value: in misses", float(j[' value']))
-                tlb_misses = tlb_misses + float(j[' value'])
-        kernels_time["Instructions"][sample] = insts
-        kernels_time["TLB_misses"][sample] = tlb_misses
+                if directory =="default" and component[3] == "L1VTLB[0]" and j[' what'] == 'miss':
+                    tlb_misses = tlb_misses + float(j[' value'])
+            kernels_time["Instructions"][sample] = insts
+            kernels_time["TLB_misses"][sample] = tlb_misses
 
 # No funciona bien
 data_serie_kernel = pd.DataFrame(kernels_time)
@@ -53,7 +51,6 @@ data_ipc = pd.DataFrame()
 default_value = 0.0
 tlbNoMisses_value = 0.0
 for row in data_serie_kernel.itertuples(index=True):
-    print(row[0])
     if row.default <= 0:
         data_ipc.loc[row[0], 'default'] = 0
     else:
