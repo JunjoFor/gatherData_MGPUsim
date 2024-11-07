@@ -4,7 +4,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-# from scipy.stats import hmean
+from scipy.stats import hmean
+
 
 # Parsing folders
 
@@ -44,7 +45,6 @@ for directory, samples in metrics.items():
                     kernels_time["TLB_misses"][sample] = kernels_time["TLB_misses"][sample] + float(j[' value'])
             
 
-# No funciona bien
 data_serie_kernel = pd.DataFrame(kernels_time)
 
 data_ipc = pd.DataFrame()
@@ -70,6 +70,7 @@ print(sorted_df)
 #             )
 
 sorted_df = sorted_df.drop(columns="MPKI")
+sorted_df = hmean(sorted_df['TLB_noMisses'])
 fig, ax = plt.subplots(constrained_layout=True)
 
 key_list = sorted_df.columns.to_list()
