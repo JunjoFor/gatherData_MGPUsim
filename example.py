@@ -70,7 +70,9 @@ print(sorted_df)
 #             )
 
 sorted_df = sorted_df.drop(columns="MPKI")
-sorted_df['Hmean'] = hmean(sorted_df['TLB_noMisses'])
+
+harmonic_means = sorted_df.apply(hmean)
+sorted_df.loc['Hmean'] = harmonic_means
 fig, ax = plt.subplots(constrained_layout=True)
 
 key_list = sorted_df.columns.to_list()
