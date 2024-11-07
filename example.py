@@ -70,7 +70,7 @@ print(sorted_df)
 #             )
 
 sorted_df = sorted_df.drop(columns="MPKI")
-sorted_df = hmean(sorted_df['TLB_noMisses'])
+sorted_df['Hmean'] = hmean(sorted_df['TLB_noMisses'])
 fig, ax = plt.subplots(constrained_layout=True)
 
 key_list = sorted_df.columns.to_list()
