@@ -44,7 +44,7 @@ for directory, samples in metrics.items():
             component = j[' where'].split(".")
             if len(component) > 2:
                 if directory =="default" and ("L1VCache" in component[2]) and j[' what'] == ' miss':
-                    kernels_time["L1_misses"][sample] = kernels_time["TLB_misses"][sample] + float(j[' value'])
+                    kernels_time["L1_misses_default"][sample] = kernels_time["TLB_misses"][sample] + float(j[' value'])
             if directory == "TLB_noMisses" and j[' what'] == ' cu_inst_count':
                 kernels_time["Instructions_noTlb"][sample] = kernels_time["Instructions"][sample] + float(j[' value'])
             component = j[' where'].split(".")
@@ -60,7 +60,7 @@ default_value = 0.0
 tlbNoMisses_value = 0.0
 for row in data_serie_kernel.itertuples(index=True):
     if row.Instructions_noTlb > 0 and row.Instructions > 0:
-        data_ipc.loc[row[0], 'default'] = row.L1_misses / (row.Instructions/1000.0)
+        data_ipc.loc[row[0], 'default'] = row.L1_misses_default / (row.Instructions/1000.0)
         data_ipc.loc[row[0], 'TLB_noMisses'] = row.L1_misses_noTlb / (row.Instructions_noTlb/1000.0)
 
 sorted_df = data_ipc.sort_values(by="default", ascending=False)
