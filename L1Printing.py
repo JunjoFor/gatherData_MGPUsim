@@ -14,8 +14,10 @@ secondDir = ["default", "TLB_noMisses"]
 metrics = {}
 kernels_time = {}
 
-kernels_time["TLB_misses"] = {}
+kernels_time["L1_misses_default"] = {}
 kernels_time["Instructions"] = {}
+kernels_time["Instructions_noTlb"] = {}
+kernels_time["L1_misses_noTlb"] = {}
 
 for dir in secondDir:
     for sample in samplesUsed:
@@ -27,7 +29,7 @@ for dir in secondDir:
     # kernels_time[dir]['Benchmark'] = samplesUsed
     for sample in samplesUsed:
         metrics[dir][sample] = pd.read_csv("../mgpusim/samples/" + sample + "/" + dir + "/metrics.csv")
-        kernels_time["Instructions_default"][sample] = 0.0
+        kernels_time["Instructions"][sample] = 0.0
         kernels_time["L1_misses_default"][sample] = 0.0
         kernels_time["Instructions_noTlb"][sample] = 0.0
         kernels_time["L1_misses_noTlb"][sample] = 0.0
