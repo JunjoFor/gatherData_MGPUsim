@@ -44,13 +44,13 @@ for directory, samples in metrics.items():
             component = j[' where'].split(".")
             if len(component) > 2:
                 if directory =="default" and ("L1VCache" in component[2]) and j[' what'] == ' read-miss':
-                    kernels_time["L1_misses_default"][sample] = kernels_time["TLB_misses"][sample] + float(j[' value'])
+                    kernels_time["L1_misses_default"][sample] = kernels_time["L1_misses_default"][sample] + float(j[' value'])
             if directory == "TLB_noMisses" and j[' what'] == ' cu_inst_count':
-                kernels_time["Instructions_noTlb"][sample] = kernels_time["Instructions"][sample] + float(j[' value'])
+                kernels_time["Instructions_noTlb"][sample] = kernels_time["Instructions_noTlb"][sample] + float(j[' value'])
             component = j[' where'].split(".")
             if len(component) > 2:
                 if directory =="TLB_noMisses" and ("L1VCache" in component[2]) and j[' what'] == ' read-miss':
-                    kernels_time["L1_misses_noTlb"][sample] = kernels_time["TLB_misses"][sample] + float(j[' value'])
+                    kernels_time["L1_misses_noTlb"][sample] = kernels_time["L1_misses_noTlb"][sample] + float(j[' value'])
             
 
 data_serie_kernel = pd.DataFrame(kernels_time)
