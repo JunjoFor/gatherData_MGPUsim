@@ -12,4 +12,4 @@ for sample in samples_paths:
         if("metrics.csv" in files):
             print(sample + " Se ejecutó correctamente")
             sucessful_samples.write(sample + ",")
-            os.system("cd " + sample_path + sample + " ; mkdir " + sys.argv[1] + "; mv metrics.csv " + sample + " slurm* ./" + sys.argv[1])
+            os.system("cd " + sample_path + sample + " ; mkdir " + sys.argv[1] + "; mv -f metrics.csv " + sample + " slurm* ./" + sys.argv[1])
