@@ -9,7 +9,7 @@ from scipy.stats import hmean
 
 # Parsing folders
 
-samplesUsed = ["atax","simpleconvolution","nw","relu","bicg","spmv","bfs","fft","im2col","concurrentkernel","matrixtranspose","nbody","memcopy","stencil2d","conv2d","fir","kmeans","aes","bitonicsort","matrixmultiplication","floydwarshall","pagerank","fastwalshtransform","concurrentworkload"]
+samplesUsed = ["simpleconvolution","nw","relu","bicg","fft","im2col","concurrentkernel","matrixtranspose","nbody","memcopy","conv2d","fir","aes","matrixmultiplication","floydwarshall","pagerank","fastwalshtransform","concurrentworkload"]
 secondDir = ["default", "TLB_noMisses"]
 metrics = {}
 kernels_time = {}
