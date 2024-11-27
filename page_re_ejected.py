@@ -37,11 +37,11 @@ for entry in pages_25:
         percentil500+=1
     elif entry.re_ejected >= 100:
         percentil100+=1
-    elif entry.re_entry >= 50:
+    elif entry.re_ejected >= 50:
         percentil50+=1
-    elif entry.re_entry >=25:
+    elif entry.re_ejected >=25:
         percentil25+=1
-    elif entry.re_entry >=0:
+    elif entry.re_ejected >=0:
         percentil0+=1
 
 
