@@ -20,7 +20,8 @@ for line in file:
                 if entry.where == line.split(",")[2].split("@")[1] and entry.page == int(line.split(",")[3].split(":")[1]):
                     entry.re_ejected +=1
                 else:
-                    pages_25.append(PageEntry(line.split(",")[2].split("@")[1], int(line.split(",")[3].split(":")[1]), 0))
+                    if len(pages_25) < 5000:
+                        pages_25.append(PageEntry(line.split(",")[2].split("@")[1], int(line.split(",")[3].split(":")[1]), 0))
         
 percentil0 = 0.0
 percentil25 = 0.0
