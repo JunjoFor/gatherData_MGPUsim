@@ -29,7 +29,7 @@ for line in file:
     elif int(line.split(",")[4].split(":")[1]) >= 1:
         percentil1+=1
     elif int(line.split(",")[4].split(":")[1]) == 0:
-        percentil0+=0
+        percentil0+=1
 
 print("Printing numbers")
 print("0: " + str(percentil0))
