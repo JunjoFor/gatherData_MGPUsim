@@ -26,12 +26,22 @@ for line in file:
         percentil25+=1
     elif int(line.split(",")[4].split(":")[1]) >=10:
         percentil10+=1
-    elif int(line.split(",")[4].split(":")[1]) <= 1:
+    elif int(line.split(",")[4].split(":")[1]) >= 1:
         percentil1+=1
     elif int(line.split(",")[4].split(":")[1]) == 0:
         percentil0+=0
 
+print("Printing numbers")
+print("0: " + str(percentil0))
+print("1-9: " + str(percentil1))
+print("10-24: " + str(percentil10))
+print("25-99: " + str(percentil25))
+print("100-999: " + str(percentil100))
+print("1000-1999: " + str(percentil1000))
+print("2000-4999: " + str(percentil2000))
+print("+5000: " + str(percentil5000))
 
+print("Printing percentajes")
 print("0: " + str(percentil0/total_lines))
 print("1-9: " + str(percentil1/total_lines))
 print("10-24: " + str(percentil10/total_lines))
