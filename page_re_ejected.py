@@ -24,39 +24,39 @@ for line in file:
                         pages_25.append(PageEntry(line.split(",")[2].split("@")[1], int(line.split(",")[3].split(":")[1]), 0))
         
 percentil0 = 0.0
-percentil25 = 0.0
-percentil50 = 0.0
-percentil100 = 0.0
-percentil500 = 0.0
 percentil1000 = 0.0
+percentil2000 = 0.0
+percentil3000 = 0.0
+percentil5000 = 0.0
+percentil10000 = 0.0
 
 for entry in pages_25:
-    if entry.re_ejected >= 1000:
+    if entry.re_ejected >= 10000:
+        percentil10000+=1
+    elif entry.re_ejected >= 5000:
+        percentil5000+=1
+    elif entry.re_ejected >= 3000:
+        percentil3000+=1
+    elif entry.re_ejected >= 2000:
+        percentil2000+=1
+    elif entry.re_ejected >1000:
         percentil1000+=1
-    elif entry.re_ejected >= 500:
-        percentil500+=1
-    elif entry.re_ejected >= 100:
-        percentil100+=1
-    elif entry.re_ejected >= 50:
-        percentil50+=1
-    elif entry.re_ejected >=25:
-        percentil25+=1
     elif entry.re_ejected >=0:
         percentil0+=1
 
 
 print("Numeros")
-print("0-24: " + str(percentil0))
-print("25-49: " + str(percentil25))
-print("50-99: " + str(percentil50))
-print("100-499: " + str(percentil100))
-print("500-999: " + str(percentil500))
-print("+1000: " + str(percentil1000))
+print("0-999: " + str(percentil0))
+print("1000-1999: " + str(percentil1000))
+print("2000-2999: " + str(percentil2000))
+print("3000-4999: " + str(percentil3000))
+print("5000-9999: " + str(percentil5000))
+print("+10000: " + str(percentil10000))
 
 print("Percentaje")
-print("0-24: " + str(percentil0/len(pages_25)))
-print("25-49: " + str(percentil25/len(pages_25)))
-print("50-99: " + str(percentil50/len(pages_25)))
-print("100-499: " + str(percentil100/len(pages_25)))
-print("500-999: " + str(percentil500/len(pages_25)))
-print("+1000: " + str(percentil1000/len(pages_25)))
+print("0-999: " + str(percentil0/len(pages_25)))
+print("1000-1999: " + str(percentil1000/len(pages_25)))
+print("2000-2999: " + str(percentil2000/len(pages_25)))
+print("3000-4999: " + str(percentil3000/len(pages_25)))
+print("5000-9999: " + str(percentil5000/len(pages_25)))
+print("+10000: " + str(percentil10000/len(pages_25)))
