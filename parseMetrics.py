@@ -12,9 +12,9 @@ aux = pd.read_csv(sys.argv[1])
 CumCPI = 0.0
 numCPI = 0.0
 for i, j in aux.iterrows():
-    if j[' what'] == ' cu_CPI':
+    if j[' what'] == ' cu_CPI' and j[' value'] != ' +Inf':
         CumCPI = CumCPI + float(j[' value'])
         numCPI = numCPI + 1
-
+print("El CPI acumulado es: " + str(CumCPI))
 print("El CPI medio es: " + str(CumCPI/numCPI))
 
