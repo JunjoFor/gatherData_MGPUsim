@@ -42,11 +42,11 @@ for line in file:
 # print("+5000: " + str(percentil5000))
 
 print("Printing percentajes")
-print(str(percentil0/total_lines) + ";") # 0
-print(str(percentil1/total_lines)+ ";") #1-9
-print(str(percentil10/total_lines)+ ";") #10-24
-print(str(percentil25/total_lines)+ ";") #25-99
-print(str(percentil100/total_lines)+ ";") #100-999
-print(str(percentil1000/total_lines)+ ";") #1000-1999
-print(str(percentil2000/total_lines)+ ";") #2000-4999
-print(str(percentil5000/total_lines)+ ";") #5000
+print(str(percentil0/total_lines) ) # 0
+print(str(percentil1/total_lines)) #1-9
+print(str(percentil10/total_lines)) #10-24
+print(str(percentil25/total_lines)) #25-99
+print(str(percentil100/total_lines)) #100-999
+print(str(percentil1000/total_lines)) #1000-1999
+print(str(percentil2000/total_lines)) #2000-4999
+print(str(percentil5000/total_lines)) #5000
