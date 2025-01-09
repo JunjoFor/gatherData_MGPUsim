@@ -31,22 +31,22 @@ for line in file:
     elif int(line.split(",")[4].split(":")[1]) == 0:
         percentil0+=1
 
-print("Printing numbers")
-print("0: " + str(percentil0))
-print("1-9: " + str(percentil1))
-print("10-24: " + str(percentil10))
-print("25-99: " + str(percentil25))
-print("100-999: " + str(percentil100))
-print("1000-1999: " + str(percentil1000))
-print("2000-4999: " + str(percentil2000))
-print("+5000: " + str(percentil5000))
+# print("Printing numbers")
+# print("0: " + str(percentil0))
+# print("1-9: " + str(percentil1))
+# print("10-24: " + str(percentil10))
+# print("25-99: " + str(percentil25))
+# print("100-999: " + str(percentil100))
+# print("1000-1999: " + str(percentil1000))
+# print("2000-4999: " + str(percentil2000))
+# print("+5000: " + str(percentil5000))
 
 print("Printing percentajes")
-print("0: " + str(percentil0/total_lines))
-print("1-9: " + str(percentil1/total_lines))
-print("10-24: " + str(percentil10/total_lines))
-print("25-99: " + str(percentil25/total_lines))
-print("100-999: " + str(percentil100/total_lines))
-print("1000-1999: " + str(percentil1000/total_lines))
-print("2000-4999: " + str(percentil2000/total_lines))
-print("+5000: " + str(percentil5000/total_lines))
+print(str(percentil0/total_lines) + ";") # 0
+print(str(percentil1/total_lines)+ ";") #1-9
+print(str(percentil10/total_lines)+ ";") #10-24
+print(str(percentil25/total_lines)+ ";") #25-99
+print(str(percentil100/total_lines)+ ";") #100-999
+print(str(percentil1000/total_lines)+ ";") #1000-1999
+print(str(percentil2000/total_lines)+ ";") #2000-4999
+print(str(percentil5000/total_lines)+ ";") #5000
