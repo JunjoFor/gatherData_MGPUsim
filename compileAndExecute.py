@@ -2,7 +2,7 @@ import sys
 import os
 
 sample_path = "/gpfs/projects/bsc18/bsc125019/mgpusim/samples/"
-samples_paths = ["conv2d", "matrixmultiplication", "im2col", "bfs", "spmv", "kmeans", "nbody", "atax"]
+samples_paths = ["conv2d", "matrixmultiplication", "im2col", "bfs", "spmv", "kmeans", "nbody", "atax", "nw"]
 
 
 for sample in samples_paths:
