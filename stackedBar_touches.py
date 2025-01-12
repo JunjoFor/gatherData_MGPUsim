@@ -114,18 +114,18 @@ weight_counts = {
     "5000+": np.array(percentil5000_list),
 }
 width = 0.5
-bar_spacing = 0.3
 
 fig, ax = plt.subplots(figsize=(12, 8))
 bottom = np.zeros(len(benchmarks))
-bar_positions = np.arange(len(benchmarks)) * (width + bar_spacing)
 
 for boolean, weight_count in weight_counts.items():
-    p = ax.bar(bar_positions, weight_count, width, label=boolean, bottom=bottom)
+    p = ax.bar(species, weight_count, width, label=boolean, bottom=bottom)
     bottom += weight_count
 
 ax.set_title("Distribution of page touches")
 ax.legend(loc="upper right")
+
+ax.set_xticklabels(species, rotation=90)
 
 plt.show()
 plt.savefig("stackedBar_touches.pdf")
