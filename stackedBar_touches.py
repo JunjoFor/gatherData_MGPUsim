@@ -10,7 +10,7 @@ base_directory = "/gpfs/projects/bsc18/bsc125019/mgpusim/samples/"
 
 # We have to add matrixtranspose and stencil2d
 
-benchmarks = ["conv2d", "matrixmultiplication", "im2col", "bfs", "spmv", "kmeans", "nbody", "atax", "nw"]
+benchmarks = ["conv2d", "matrixmultiplication", "im2col", "bfs", "spmv", "kmeans", "nbody", "nw"]
 
 percentil0_list = []
 percentil1_list = []
