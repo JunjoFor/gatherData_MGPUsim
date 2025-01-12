@@ -8,16 +8,18 @@ import sys
 
 base_directory = "../mgpusim/samples/"
 
-benchmarks = ["conv2d", "matrixmultiplication", "im2col", "bfs", "spmv", "kmeans", "nbody", "atax", "nw", "matrixtranspose", "stencil2d"]
+# We have to add matrixtranspose and stencil2d
 
-percentil0 = []
-percentil1 = []
-percentil10 = []
-percentil25 = []
-percentil100 = []
-percentil1000 = []
-percentil2000 = []
-percentil5000 = []
+benchmarks = ["conv2d", "matrixmultiplication", "im2col", "bfs", "spmv", "kmeans", "nbody", "atax", "nw"]
+
+percentil0_list = []
+percentil1_list = []
+percentil10_list = []
+percentil25_list = []
+percentil100_list = []
+percentil1000_list = []
+percentil2000_list = []
+percentil5000_list = []
 i = 0
 for sample in benchmarks:
     # ParseTouches funcionality
@@ -61,27 +63,44 @@ for sample in benchmarks:
         elif int(line.split(",")[4].split(":")[1]) == 0:
             percentil0+=1
     #include percentil to the list divided by total_lines
+    percentil0_list = percentil0_list + (percentil0/total_lines)
+    percentil1_list = percentil1_list + (percentil1/total_lines)
+    percentil10_list = percentil10_list + (percentil10/total_lines)
+    percentil25_list = percentil25_list + (percentil25/total_lines)
+    percentil100_list = percentil100_list + (percentil100/total_lines)
+    percentil1000_list = percentil1000_list + (percentil1000/total_lines)
+    percentil2000_list = percentil2000_list + (percentil2000/total_lines)
+    percentil5000_list = percentil5000_list + (percentil5000/total_lines)
 
 
-species = (
-    "Adelie\n $\\mu=$3700.66g",
-    "Chinstrap\n $\\mu=$3733.09g",
-    "Gentoo\n $\\mu=5076.02g$",
-)
+
+# species = (
+#     "Adelie\n $\\mu=$3700.66g",
+#     "Chinstrap\n $\\mu=$3733.09g",
+#     "Gentoo\n $\\mu=5076.02g$",
+# )
+species = benchmarks
 weight_counts = {
-    "Below": np.array([70, 31, 58]),
-    "Above": np.array([82, 37, 66]),
+    "0": np.array(percentil0_list),
+    "1-9": np.array(percentil1_list),
+    "10-24": np.array(percentil10_list),
+    "25-99": np.array(percentil25_list),
+    "100-999": np.array(percentil100_list),
+    "1000-1999": np.array(percentil1000_list),
+    "2000-4999": np.array(percentil2000_list),
+    "5000+": np.array(percentil5000_list),
 }
 width = 0.5
 
 fig, ax = plt.subplots()
-bottom = np.zeros(3)
+bottom = np.zeros(len(benchmarks))
 
 for boolean, weight_count in weight_counts.items():
     p = ax.bar(species, weight_count, width, label=boolean, bottom=bottom)
     bottom += weight_count
 
-ax.set_title("Number of penguins with above average body mass")
+ax.set_title("Distribution of page touches")
 ax.legend(loc="upper right")
 
 plt.show()
+plt.savefig("stackedBar_touches.png")
