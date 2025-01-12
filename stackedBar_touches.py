@@ -63,6 +63,8 @@ for sample in benchmarks:
         elif int(line.split(",")[4].split(":")[1]) == 0:
             percentil0+=1
     #include percentil to the list divided by total_lines
+    if (total_lines == 0):
+        print("Error: " + sample + " has 0 lines")
     if(percentil0 == 0):
         percentil0_list.append(0)
     else:
