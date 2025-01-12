@@ -9,8 +9,8 @@ from scipy.stats import hmean
 
 # Parsing folders
 
-samplesUsed = ["simpleconvolution","nw","relu","bicg","fft","im2col","concurrentkernel","matrixtranspose","nbody","memcopy","conv2d","fir","aes","matrixmultiplication","floydwarshall","pagerank","fastwalshtransform","concurrentworkload"]
-secondDir = ["default", "TLB_noMisses"]
+samplesUsed = ["conv2d", "matrixmultiplication", "im2col", "bfs", "spmv", "kmeans", "nbody", "nw"]
+secondDir = ["default", "half_TLBL1"]
 metrics = {}
 kernels_time = {}
 
