@@ -113,7 +113,7 @@ weight_counts = {
     "2000-4999": np.array(percentil2000_list),
     "5000+": np.array(percentil5000_list),
 }
-width = 0.5
+width = 1.5
 
 fig, ax = plt.subplots()
 bottom = np.zeros(len(benchmarks))
