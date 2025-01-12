@@ -114,6 +114,7 @@ weight_counts = {
     "5000+": np.array(percentil5000_list),
 }
 width = 0.5
+bar_spacing = 0.3
 
 fig, ax = plt.subplots(figsize=(12, 8))
 bottom = np.zeros(len(benchmarks))
