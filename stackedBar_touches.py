@@ -20,7 +20,7 @@ percentil100_list = []
 percentil1000_list = []
 percentil2000_list = []
 percentil5000_list = []
-i = 0
+
 for sample in benchmarks:
     # ParseTouches funcionality
     f = open( base_directory + sample + "/" + sys.argv[1] + "/mem.trace", "r")
@@ -63,15 +63,36 @@ for sample in benchmarks:
         elif int(line.split(",")[4].split(":")[1]) == 0:
             percentil0+=1
     #include percentil to the list divided by total_lines
-    percentil0_list.append(percentil0/total_lines)
-    percentil1_list .append(percentil1/total_lines)
+    if(percentil0 == 0):
+        percentil0_list.append(0)
+    else:
+        percentil0_list.append(percentil0/total_lines)
+    if(percentil1 == 0):
+        percentil1_list.append(0)
+    else:
+        percentil1_list .append(percentil1/total_lines)
     percentil10_list.append(percentil10/total_lines)
-    percentil25_list.append(percentil25/total_lines)
-    percentil100_list.append(percentil100/total_lines)
-    percentil1000_list.append(percentil1000/total_lines)
-    percentil2000_list.append(percentil2000/total_lines)
-    percentil5000_list.append(percentil5000/total_lines)
-
+    if(percentil25 == 0):
+        percentil25_list.append(0)
+    else:
+        percentil25_list.append(percentil25/total_lines)
+    if(percentil100 == 0):
+        percentil100_list.append(0)
+    else:
+        percentil100_list.append(percentil100/total_lines)
+    if(percentil1000 == 0):
+        percentil1000_list.append(0)
+    else:
+        percentil1000_list.append(percentil1000/total_lines)
+    if(percentil2000 == 0):
+        percentil2000_list.append(0)
+    else:
+        percentil2000_list.append(percentil2000/total_lines)
+    if(percentil5000 == 0):
+        percentil5000_list.append(0)
+    else:
+        percentil5000_list.append(percentil5000/total_lines)
+    file.close()
 
 
 # species = (
