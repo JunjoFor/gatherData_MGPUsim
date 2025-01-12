@@ -6,7 +6,7 @@ import sys
 
 # data from https://allisonhorst.github.io/palmerpenguins/
 
-base_directory = "../mgpusim/samples/"
+base_directory = "/gpfs/projects/bsc18/bsc125019/mgpusim/samples/"
 
 # We have to add matrixtranspose and stencil2d
 
