@@ -51,9 +51,9 @@ data_ipc = pd.DataFrame()
 default_value = 0.0
 tlbNoMisses_value = 0.0
 for row in data_serie_kernel.itertuples(index=True):
-    if row.default > 0 and row.TLB_noMisses > 0:
+    if row.default > 0 and row.half_TLBL1 > 0:
         data_ipc.loc[row[0], 'default'] = row.default / row.default
-        data_ipc.loc[row[0], 'TLB_noMisses'] = row.default / row.TLB_noMisses
+        data_ipc.loc[row[0], 'half_TLBL1'] = row.default / row.half_TLBL1
         if row.Instructions <= 0:
             data_ipc.loc[row[0], "MPKI"] = 0.0
         else:
@@ -96,5 +96,5 @@ ax.set_xticklabels(xticklabels, rotation=90)
 ax.set_ylabel('SpeedUp')
 ax.legend(title='Directories')
 
-plt.savefig("SpeedUp_TLB_noMisses_sorted.pdf")
+plt.savefig("SpeedUp_half_TLB_sorted.pdf")
 # plt.show()
