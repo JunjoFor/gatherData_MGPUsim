@@ -35,7 +35,7 @@ for sample in benchmarks:
     # count_touches funcionality
 
     file = open(base_directory + sample + "/" + sys.argv[1] + "/page_touches.txt" , "r")
-    total_lines = 0
+    total_lines = 0.0
     percentil0 = 0.0
     percentil1 = 0.0
     percentil10 = 0.0
