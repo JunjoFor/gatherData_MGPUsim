@@ -63,14 +63,14 @@ for sample in benchmarks:
         elif int(line.split(",")[4].split(":")[1]) == 0:
             percentil0+=1
     #include percentil to the list divided by total_lines
-    percentil0_list = percentil0_list + (percentil0/total_lines)
-    percentil1_list = percentil1_list + (percentil1/total_lines)
-    percentil10_list = percentil10_list + (percentil10/total_lines)
-    percentil25_list = percentil25_list + (percentil25/total_lines)
-    percentil100_list = percentil100_list + (percentil100/total_lines)
-    percentil1000_list = percentil1000_list + (percentil1000/total_lines)
-    percentil2000_list = percentil2000_list + (percentil2000/total_lines)
-    percentil5000_list = percentil5000_list + (percentil5000/total_lines)
+    percentil0_list.append(percentil0/total_lines)
+    percentil1_list .append(percentil1/total_lines)
+    percentil10_list.append(percentil10/total_lines)
+    percentil25_list.append(percentil25/total_lines)
+    percentil100_list.append(percentil100/total_lines)
+    percentil1000_list.append(percentil1000/total_lines)
+    percentil2000_list.append(percentil2000/total_lines)
+    percentil5000_list.append(percentil5000/total_lines)
 
 
 
@@ -103,4 +103,4 @@ ax.set_title("Distribution of page touches")
 ax.legend(loc="upper right")
 
 plt.show()
-plt.savefig("stackedBar_touches.png")
+plt.savefig("stackedBar_touches.pdf")
