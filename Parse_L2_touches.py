@@ -1,8 +1,8 @@
 import sys
 import os
 
-f = open(sys.argv[1] + "/mem.trace", "r")
-outF = open(sys.argv[1] + "page_touches.txt" , "w")
+f = open(sys.argv[1] + "/TLBL2_transactions.txt", "r")
+outF = open(sys.argv[1] + "page_touches_L2.txt" , "w")
 
 for line in f:
     if "No_touches" in line:
