@@ -65,35 +65,44 @@ for sample in benchmarks:
     #include percentil to the list divided by total_lines
     if (total_lines == 0):
         print("Error: " + sample + " has 0 lines")
-    if(percentil0 == 0):
         percentil0_list.append(0)
-    else:
-        percentil0_list.append(percentil0/total_lines)
-    if(percentil1 == 0):
         percentil1_list.append(0)
-    else:
-        percentil1_list .append(percentil1/total_lines)
-    percentil10_list.append(percentil10/total_lines)
-    if(percentil25 == 0):
+        percentil10_list.append(0)
         percentil25_list.append(0)
-    else:
-        percentil25_list.append(percentil25/total_lines)
-    if(percentil100 == 0):
         percentil100_list.append(0)
-    else:
-        percentil100_list.append(percentil100/total_lines)
-    if(percentil1000 == 0):
         percentil1000_list.append(0)
-    else:
-        percentil1000_list.append(percentil1000/total_lines)
-    if(percentil2000 == 0):
         percentil2000_list.append(0)
-    else:
-        percentil2000_list.append(percentil2000/total_lines)
-    if(percentil5000 == 0):
         percentil5000_list.append(0)
     else:
-        percentil5000_list.append(percentil5000/total_lines)
+        if(percentil0 == 0):
+            percentil0_list.append(0)
+        else:
+            percentil0_list.append(percentil0/total_lines)
+        if(percentil1 == 0):
+            percentil1_list.append(0)
+        else:
+            percentil1_list .append(percentil1/total_lines)
+        percentil10_list.append(percentil10/total_lines)
+        if(percentil25 == 0):
+            percentil25_list.append(0)
+        else:
+            percentil25_list.append(percentil25/total_lines)
+        if(percentil100 == 0):
+            percentil100_list.append(0)
+        else:
+            percentil100_list.append(percentil100/total_lines)
+        if(percentil1000 == 0):
+            percentil1000_list.append(0)
+        else:
+            percentil1000_list.append(percentil1000/total_lines)
+        if(percentil2000 == 0):
+            percentil2000_list.append(0)
+        else:
+            percentil2000_list.append(percentil2000/total_lines)
+        if(percentil5000 == 0):
+            percentil5000_list.append(0)
+        else:
+            percentil5000_list.append(percentil5000/total_lines)
     file.close()
 
 
