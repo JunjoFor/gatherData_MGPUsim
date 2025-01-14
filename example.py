@@ -10,7 +10,7 @@ from scipy.stats import hmean
 # Parsing folders
 
 samplesUsed = ["conv2d", "matrixmultiplication", "im2col", "bfs", "spmv", "kmeans", "nbody", "nw"]
-secondDir = ["default", "double_TLBL1"]
+secondDir = ["default", "TLB_noMisses"]
 metrics = {}
 kernels_time = {}
 
@@ -51,9 +51,9 @@ data_ipc = pd.DataFrame()
 default_value = 0.0
 tlbNoMisses_value = 0.0
 for row in data_serie_kernel.itertuples(index=True):
-    if row.default > 0 and row.double_TLBL1 > 0:
+    if row.default > 0 and row.TLB_noMisses > 0:
         data_ipc.loc[row[0], 'default'] = row.default / row.default
-        data_ipc.loc[row[0], 'double_TLBL1'] = row.default / row.double_TLBL1
+        data_ipc.loc[row[0], 'TLB_noMisses'] = row.default / row.TLB_noMisses
         if row.Instructions <= 0:
             data_ipc.loc[row[0], "MPKI"] = 0.0
         else:
