@@ -24,7 +24,7 @@ percentil5000_list = []
 for sample in benchmarks:
     # ParseTouches funcionality
     f = open( base_directory + sample + "/" + sys.argv[1] + "/mem.trace", "r")
-    outF = open(base_directory + sample + "/" + sys.argv[1] + sys.argv[2] , "w")
+    outF = open(base_directory + sample + "/" + sys.argv[1] + "/page_touches.txt" , "w")
 
     for line in f:
         if "No_touches" in line:
@@ -34,7 +34,7 @@ for sample in benchmarks:
 
     # count_touches funcionality
 
-    file = open(base_directory + sample + "/" + sys.argv[1] + sys.argv[2] , "r")
+    file = open(base_directory + sample + "/" + sys.argv[1] + "/page_touches.txt" , "r")
     total_lines = 0.0
     percentil0 = 0.0
     percentil1 = 0.0
