@@ -45,24 +45,25 @@ for sample in benchmarks:
     percentil2000 = 0.0
     percentil5000 = 0.0
     for line in file:
-        total_lines= total_lines+1
-        if int(line.split(",")[4].split(":")[1]) >= 5000:
-            percentil5000+=1
-        elif int(line.split(",")[4].split(":")[1]) >= 2000:
-            percentil2000+=1
-        elif int(line.split(",")[4].split(":")[1]) >= 1000:
-            percentil1000+=1
-        elif int(line.split(",")[4].split(":")[1]) >= 100:
-            percentil100+=1
-        elif int(line.split(",")[4].split(":")[1]) >= 25:
-            percentil25+=1
-        elif int(line.split(",")[4].split(":")[1]) >=10:
-            percentil10+=1
-        elif int(line.split(",")[4].split(":")[1]) >= 1:
-            percentil1+=1
-        elif int(line.split(",")[4].split(":")[1]) == 0:
-            if not "Page: 0" in line:
-                percentil0+=1
+        if "L1" in line:
+            total_lines= total_lines+1
+            if int(line.split(",")[4].split(":")[1]) >= 5000:
+                percentil5000+=1
+            elif int(line.split(",")[4].split(":")[1]) >= 2000:
+                percentil2000+=1
+            elif int(line.split(",")[4].split(":")[1]) >= 1000:
+                percentil1000+=1
+            elif int(line.split(",")[4].split(":")[1]) >= 100:
+                percentil100+=1
+            elif int(line.split(",")[4].split(":")[1]) >= 25:
+                percentil25+=1
+            elif int(line.split(",")[4].split(":")[1]) >=10:
+                percentil10+=1
+            elif int(line.split(",")[4].split(":")[1]) >= 1:
+                percentil1+=1
+            elif int(line.split(",")[4].split(":")[1]) == 0:
+                if not "Page: 0" in line:
+                    percentil0+=1
     #include percentil to the list divided by total_lines
     if (total_lines == 0):
         print("Error: " + sample + " has 0 lines")
