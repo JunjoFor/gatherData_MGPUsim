@@ -1,7 +1,7 @@
 import sys
 from dataclasses import dataclass
 
-file = open(sys.argv[1] + "page_touches.txt" , "r")
+file = open(sys.argv[1], "r")
 
 @dataclass
 class PageEntry:
