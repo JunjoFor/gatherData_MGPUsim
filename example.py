@@ -10,7 +10,7 @@ from scipy.stats import hmean
 # Parsing folders
 
 samplesUsed = ["conv2d", "matrixmultiplication", "im2col", "bfs", "spmv", "kmeans", "nbody", "nw"]
-secondDir = ["default", "TLB_noMisses"]
+secondDir = ["default_fixTLB", "mod2_fixTLB"]
 metrics = {}
 kernels_time = {}
 
@@ -37,11 +37,11 @@ for directory, samples in metrics.items():
         for i, j in aux.iterrows():
             if j[' what'] == ' kernel_time' and j[' where'] == ' Driver':
                 kernels_time[directory][sample] = float(j[' value'])
-            if directory == "default" and j[' what'] == ' cu_inst_count':
+            if directory == "default_fixTLB" and j[' what'] == ' cu_inst_count':
                 kernels_time["Instructions"][sample] = kernels_time["Instructions"][sample] + float(j[' value'])
             component = j[' where'].split(".")
             if len(component) > 2:
-                if directory =="default" and ("TLB" in component[2]) and j[' what'] == ' miss':
+                if directory =="default_fixTLB" and ("TLB" in component[2]) and j[' what'] == ' miss':
                     kernels_time["TLB_misses"][sample] = kernels_time["TLB_misses"][sample] + float(j[' value'])
             
 
@@ -51,9 +51,9 @@ data_ipc = pd.DataFrame()
 default_value = 0.0
 tlbNoMisses_value = 0.0
 for row in data_serie_kernel.itertuples(index=True):
-    if row.default > 0 and row.TLB_noMisses > 0:
-        data_ipc.loc[row[0], 'default'] = row.default / row.default
-        data_ipc.loc[row[0], 'TLB_noMisses'] = row.default / row.TLB_noMisses
+    if row.default_fixTLB > 0 and row.mod2_fixTLB > 0:
+        data_ipc.loc[row[0], 'default_fixTLB'] = row.default_fixTLB / row.default_fixTLB
+        data_ipc.loc[row[0], 'mod2_fixTLB'] = row.default_fixTLB / row.mod2_fixTLB
         if row.Instructions <= 0:
             data_ipc.loc[row[0], "MPKI"] = 0.0
         else:
@@ -62,11 +62,11 @@ for row in data_serie_kernel.itertuples(index=True):
 sorted_df = data_ipc.sort_values(by="MPKI", ascending=False)
 
 # data_frame_default = pd.DataFrame(kernels_time.get("default"))
-# data_frame_TLB_noMisses = pd.DataFrame(kernels_time.get("TLB_noMisses"))
+# data_frame_mod2_fixTLB = pd.DataFrame(kernels_time.get("mod2_fixTLB"))
 print(data_serie_kernel)
 print(sorted_df)
 # sns.barplot(data = data_serie_kernel, 
-#              # x='default', y='TLB_noMisses'
+#              # x='default', y='mod2_fixTLB'
 #             )
 
 sorted_df = sorted_df.drop(columns="MPKI")
