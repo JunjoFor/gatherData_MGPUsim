@@ -10,7 +10,7 @@ from scipy.stats import hmean
 # Parsing folders
 
 samplesUsed = ["conv2d", "matrixmultiplication", "im2col", "bfs", "spmv", "kmeans", "nbody", "nw"]
-secondDir = ["default_fixTLB", "mod2_fixTLB"]
+secondDir = ["default_fixTLB", "TLB_noMisses_fixTLB"]
 metrics = {}
 kernels_time = {}
 
@@ -51,9 +51,9 @@ data_ipc = pd.DataFrame()
 default_value = 0.0
 tlbNoMisses_value = 0.0
 for row in data_serie_kernel.itertuples(index=True):
-    if row.default_fixTLB > 0 and row.mod2_fixTLB > 0:
+    if row.default_fixTLB > 0 and row.TLB_noMisses_fixTLB > 0:
         data_ipc.loc[row[0], 'default_fixTLB'] = row.default_fixTLB / row.default_fixTLB
-        data_ipc.loc[row[0], 'mod2_fixTLB'] = row.default_fixTLB / row.mod2_fixTLB
+        data_ipc.loc[row[0], 'TLB_noMisses_fixTLB'] = row.default_fixTLB / row.TLB_noMisses_fixTLB
         if row.Instructions <= 0:
             data_ipc.loc[row[0], "MPKI"] = 0.0
         else:
@@ -62,11 +62,11 @@ for row in data_serie_kernel.itertuples(index=True):
 sorted_df = data_ipc.sort_values(by="MPKI", ascending=False)
 
 # data_frame_default = pd.DataFrame(kernels_time.get("default"))
-# data_frame_mod2_fixTLB = pd.DataFrame(kernels_time.get("mod2_fixTLB"))
+# data_frame_TLB_noMisses_fixTLB = pd.DataFrame(kernels_time.get("TLB_noMisses_fixTLB"))
 print(data_serie_kernel)
 print(sorted_df)
 # sns.barplot(data = data_serie_kernel, 
-#              # x='default', y='mod2_fixTLB'
+#              # x='default', y='TLB_noMisses_fixTLB'
 #             )
 
 sorted_df = sorted_df.drop(columns="MPKI")
@@ -96,5 +96,5 @@ ax.set_xticklabels(xticklabels, rotation=90)
 ax.set_ylabel('SpeedUp')
 ax.legend(title='Directories')
 
-plt.savefig("SpeedUp_double_TLB_sorted.pdf")
+plt.savefig("SpeedUp_noMisses_fixTLB_sorted.pdf")
 # plt.show()
